@@ -5,6 +5,11 @@
 <style>
 @import url(d3.parsets.css);
 
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+  }
+
 </style>
 <script src="d3.min.js"></script>
 <script src="d3.parsets.js"></script>
@@ -13,7 +18,10 @@
 
 function main() {
 	var chart = d3.parsets()
-		  .dimensions(["PFSR_CLASS", "SURFACE_TY"]);
+		  .dimensions(["PFSR_CLASS", "SURFACE_TY", "OPER_MAINT"])
+		  .value(function (d, i){
+			return d["SEG_LENGTH"];
+			});
 
 	var vis = d3.select("#vis").append("svg")
 		.attr("width", chart.width())
