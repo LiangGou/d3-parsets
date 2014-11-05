@@ -11,11 +11,23 @@
 <!-- <script src="highlight.min.js"></script> !-->
 <script>
 
+function main() {
+	var chart = d3.parsets()
+		  .dimensions(["PFSR_CLASS", "SURFACE_TY"]);
+
+	var vis = d3.select("#vis").append("svg")
+		.attr("width", chart.width())
+		.attr("height", chart.height());
+
+	d3.csv("FLTP.csv", function(error, csv) {
+	  vis.datum(csv).call(chart);
+	});
+}
 </script>
 
 </head>
 
-<body>
+<body onload="main();">
 <div id="vis"></div>
 </body>
 
